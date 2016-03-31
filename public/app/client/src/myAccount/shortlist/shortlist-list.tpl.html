@@ -1,0 +1,52 @@
+<ul class="timeline">
+    <li ng-repeat="shortlist in shortlists">
+        <!-- begin timeline-time -->
+        <div class="timeline-time">
+            <span class="date">today</span>
+            <span class="time">04:20</span>
+        </div>
+        <!-- end timeline-time -->
+        <!-- begin timeline-icon -->
+        <div class="timeline-icon">
+            <a href="javascript:;"><i class="fa fa-paper-plane"></i></a>
+        </div>
+        <!-- end timeline-icon -->
+        <!-- begin timeline-body -->
+        <div class="timeline-body">
+            <ul class="result-list">
+                <li>
+                    <!-- <pre> <% flat | json  %> </pre> -->
+                    <div class="result-image">
+                        <a href="javascript:;"><img src="assets/img/gallery/gallery-1.jpg" alt="" /></a>
+                    </div>
+                    <div class="result-info">
+                        <h4 class="title"><a href="javascript:;"><%shortlist.shortlistable.no_rooms%> Rooms Flat</a></h4>
+                        <p class="location">
+                            <%shortlist.shortlistable.vdc%>,
+                                <%shortlist.shortlistable.locality %>
+                        </p>
+                        <p class="price">
+                            Rs.
+                            <% shortlist.shortlistable.price %>
+                        </p>
+                        <p class="desc">
+                        </p>
+                        <div class="btn-row">
+                            <a href="javascript:;" ng-click="makeShortlist(shortlist.shortlistable.id)" ng-show="login">
+                                <i class="fa fa-fw" ng-class="shortlist.shortlistable.shortlists.length!=0 ? 'fa-heart red':'fa-heart-o'"></i>
+                            </a>
+                            <a href="javascript:;" ng-show="login"><i class="fa fa-fw fa-tachometer"></i></a>
+                        </div>
+                    </div>
+                    <div class="result-price">
+                        <small><% shortlist.shortlistable.created_by.username %></small>
+                        <small><i class="fa fa-phone-square" ng-show="<% shortlist.shortlistable.created_by.mob_no %>" >&nbsp; &nbsp;<% shortlist.shortlistable.created_by.mob_no %></i></small>
+                        <small><span class="badge badge-success ion-ios-telephone"><%shortlist.shortlistable.created_by.user_is %></span></small>
+                        <a href="javascript:;" class="btn btn-inverse btn-block">Message</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- end timeline-body -->
+    </li>
+</ul>

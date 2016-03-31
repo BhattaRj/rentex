@@ -1,0 +1,202 @@
+<!-- begin row -->
+<div class="row">
+    <!-- begin col-12 -->
+    <div class="col-md-12">
+        <div class="panel panel-inverse" data-sortable-id="form-stuff-1">
+            <div class="panel-heading">
+                <h4 class="panel-title">Add Flat/Room</h4>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" name="flatForm" novalidate>
+                    <!-- begin col-6 -->
+                    <div class="col-md-6">
+                        <!-- begin panel -->
+                        <div class="panel panel-inverse" data-sortable-id="form-stuff-1">
+                            <div class="panel-body">
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Title *</label>
+                                    <div class="col-md-9" ng-class="{ 'has-error': flatForm.title.$touched && flatForm.title.$invalid }">
+                                        <input typhalle="text" class="form-control" placeholder="Title" ng-model="flat.title" name="title" required/>
+                                        <ul ng-messages="flatForm.title.$error" ng-show="flatForm.title.$touched">
+                                            <div ng-messages-include="/app/common/template/messages.html"></div>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Floor *</label>
+                                    <div class="col-md-9" ng-class="{ 'has-error': flatForm.flat_no.$touched && flatForm.flat_no.$invalid }">
+
+                                        <select class="form-control" ng-model="flat.flat_no" ng-options="item.name as item.name for item in dataFactory.flat_no" name="flat_no" required>
+                                            <option value="">Choose Floor</option>
+                                        </select>
+
+                                        <ul ng-messages="flatForm.flat_no.$error" ng-show="flatForm.flat_no.$touched">
+                                            <div ng-messages-include="/app/common/template/messages.html"></div>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-class="getCssClass(flatForm.no_rooms)">
+                                    <label class="col-md-3 control-label">Rooms *</label>
+                                    <div class="col-md-9" ng-class="{ 'has-error': flatForm.no_rooms.$touched && flatForm.no_rooms.$invalid }">
+                                        <input type="number" string-to-number class="form-control" ng-model="flat.no_rooms" placeholder="Number of Rooms" name="no_rooms" required/>
+
+                                        <ul ng-messages="flatForm.no_rooms.$error" ng-show="flatForm.no_rooms.$touched">
+                                            <div ng-messages-include="/app/common/template/messages.html"></div>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Bed Rooms</label>
+                                    <div class="col-md-9">
+                                        <input type="number" string-to-number class="form-control" ng-model="flat.no_bedrooms" placeholder="Number of Bed Rooms" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Kitchen</label>
+                                    <div class="col-md-9">
+                                        <input type="number" string-to-number class="form-control" ng-model="flat.no_kitchen" placeholder="Number of Kitchen" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Hall</label>
+                                    <div class="col-md-9">
+                                        <input type="number" string-to-number class="form-control" ng-model="flat.no_hall" placeholder="Number of Hall" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Floor Type</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control" ng-model="flat.floor_type" ng-options="item.name as item.name for item in dataFactory.floor_type">
+                                            <option value="">Choose Floor Type</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Earthquake Protection </label>
+                                    <div class="col-md-9">
+                                        <label class="radio-inline">
+                                            <input type="radio" ng-model="flat.earth_quake_protection" value="1" /> Yes
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" ng-model="flat.earth_quake_protection" value="0" /> No
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Facilities * </label>
+                                    <div class="col-md-9">
+                                        <ui-select multiple ng-model="flat.facilities" theme="select2" ng-disabled="disabled" style="width: 100%" name="facilities" required>
+                                            <ui-select-match placeholder="Select colors...">
+                                                <% $item.title %>
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="facility  in facilities | filter:$select.search">
+                                                <% facility.title %>
+                                            </ui-select-choices>
+                                        </ui-select>
+
+                                        <ul ng-messages="flatForm.facilities.$error" ng-show="flatForm.facilities.$touched">
+                                            <div ng-messages-include="/app/common/template/messages.html"></div>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end panel -->
+                    </div>
+                    <!-- end col-6 -->
+                    <!-- begin col-6 -->
+                    <div class="col-md-6">
+                        <!-- begin panel -->
+                        <div class="panel panel-inverse" data-sortable-id="form-stuff-2">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Price *</label>
+                                    <div class="col-md-9" ng-class="{ 'has-error': flatForm.price.$touched && flatForm.price.$invalid }">
+                                        <input type="number" string-to-number class="form-control" ng-model="flat.price" placeholder="Rent Per Month" required name="price" />
+
+                                        <ul ng-messages="flatForm.price.$error" ng-show="flatForm.price.$touched">
+                                            <div ng-messages-include="/app/common/template/messages.html"></div>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Price Negotiable</label>
+                                    <div class="col-md-9">
+                                        <label class="radio-inline">
+                                            <input type="radio" ng-model="flat.price_negotiable" value="1" selected /> Yes
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" ng-model="flat.price_negotiable" value="0" /> No
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">District *</label>
+                                    <div class="col-md-9" ng-class="{ 'has-error': flatForm.district.$touched && flatForm.district.$invalid }">
+
+                                        <select class="form-control" ng-model="flat.district" ng-options="item.id as item.name for item in dataFactory.district" name="district" required>
+                                            <option value="">Choose District</option>
+                                        </select>
+                                        <ul ng-messages="flatForm.district.$error" ng-show="flatForm.district.$touched">
+                                            <div ng-messages-include="/app/common/template/messages.html"></div>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">VDC/City *</label>
+                                    <div class="col-md-9" ng-class="{ 'has-error': flatForm.vdc.$touched && flatForm.vdc.$invalid }">
+                                        <input type="text" class="form-control" placeholder="VDC/City" ng-model="flat.vdc" name="vdc" required/>
+                                        <ul ng-messages="flatForm.vdc.$error" ng-show="flatForm.vdc.$touched">
+                                            <div ng-messages-include="/app/common/template/messages.html"></div>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Ward No.</label>
+                                    <div class="col-md-9">
+                                        <input type="number" string-to-number class="form-control" ng-model="flat.ward_no" placeholder="Ward No." />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Locality *</label>
+                                    <div class="col-md-9" ng-class="{ 'has-error': flatForm.locality.$touched && flatForm.locality.$invalid }">
+                                        <input type="text" class="form-control" ng-model="flat.locality" placeholder="Locality" name="locality" required/>
+                                        <ul ng-messages="flatForm.locality.$error" ng-show="flatForm.locality.$touched">
+                                            <div ng-messages-include="/app/common/template/messages.html"></div>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Land Mark</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" ng-model="flat.landmark" placeholder="Locality" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Description </label>
+                                    <div class="col-md-9">
+                                        <textarea class="form-control" placeholder="Description." rows="5" ng-model="flat.description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end panel -->
+                    </div>
+                    <!-- end col-6 -->
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button type="button" ng-click="save(flat)" class="btn btn-sm btn-success" ng-disabled="!canSave(flatForm)">Add</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- end col-12 -->
+</div>
+<!-- end row -->

@@ -1,0 +1,64 @@
+<!-- begin row -->
+<div class="row">
+    <!-- begin col-12 -->
+    <div class="col-md-12">
+        <!-- begin panel -->
+        <div class="panel panel-inverse" data-sortable-id="table-basic-7">
+            <div class="panel-heading">
+                <h4 class="panel-title">Facilities</h4>
+            </div>
+            <div class="panel-body">
+                <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout='2500'>{{alert.msg}}</alert>
+                <form class="form-inline">
+                    <button type="button" class="btn btn-sm btn-primary m-r-10" ng-click="new()"><i class="fa fa-edit"></i>Create</button>
+                    <div class="form-group m-r-10 pull-right">
+                        <input type="criteria" class="form-control" ng-model="criteria" id="exampleInputEmail2" placeholder="Search" />
+                    </div>
+                </form>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th ng-click="sort('title')">Title
+                                <i class="fa fa-caret-up" ng-class="{'fa fa-caret-up': isSortUp('title'), 'fa fa-caret-down': isSortDown('title')}"></i>
+                            </th>
+                            <th >Icon</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="facility in filteredFacilities= (facilities|orderBy:sortField:reverse|paginate:currentPage:itemsPerPage|filter:criteria)" ng-click="selectModal(facility)" ng-switch on="isSelected(facility)">
+                        <tr ng-class-even="'info'" ng-class-odd="'warning'">
+                            <td>{{ $index+1 }}</td>
+                            <td>{{ facility.title }}</td>
+                            <td>{{ facility.icon }}</td>
+                            <td>Table cell</td>
+                            <td>
+                                <a class="btn btn-danger btn-icon btn-circle btn-sm" ng-click="delete(facility,$index,$event)"><i class="fa fa-times"></i></a>
+                                <a class="btn btn-primary btn-icon btn-circle btn-sm" ng-click="edit(facility.id,$event)"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                        <tr ng-switch-when="true">
+                            <td></td>
+                            <td>Created At</td>
+                            <td>{{facility.created_at}}</td>
+                        </tr>
+                        <tr ng-switch-when="true">
+                            <td></td>
+                            <td>Updated At</td>
+                            <td>{{facility.updated_at}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- end panel -->
+    <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page='itemsPerPage' ng-change="pageChanged()"></pagination>
+    <pre>Page: {{currentPage}} / {{numPages}}</pre>
+</div>
+<!-- end col-12 -->
+</div>
+<!-- end row -->

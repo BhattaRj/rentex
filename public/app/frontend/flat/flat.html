@@ -1,0 +1,149 @@
+<div class="parallax bg-white page-section">
+    <div class="parallax-layer container" data-opacity="true">
+        <div class="media v-middle">
+            <div class="media-left">
+                <span class="icon-block s60 bg-lightred"><i class="fa fa-github"></i></span>
+            </div>            
+            <div class="media-body">
+                <h4yo><% flat.title %></h4>
+                <p class="small margin-none">
+                <span class="fa fa-fw fa-star text-yellow-800"></span>
+                <span class="fa fa-fw fa-star text-yellow-800"></span>
+                <span class="fa fa-fw fa-star text-yellow-800"></span>
+                <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                </p>
+            </div>
+            <div class="media-right">
+                <a class="btn btn-white" ui-sref="website-courses.grid">Flat/Room</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9 col-md-8">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-9 col-md-8">
+            <div class="page-section">
+                <div class="width-600 width-300-md width-100pc-xs paragraph-inline">
+                    <carousel interval="5000" no-wrap="false">
+                    <slide ng-repeat="slide in slides" active="slide.active">
+                    <img ng-src="<% slide.src %>" style="margin:auto;">
+                    <div class="carousel-caption">
+                        <h4>
+                        <% dataFactory.district[flat.district].name %>
+                        <span ng-hide="flat.vdc == dataFactory.district[flat.district].name "><% flat.vdc %>,</span>
+                        <span ng-show="flat.locality"> <% flat.locality %></span>
+                        </h4>
+                    </div>
+                    </slide>
+                    </carousel>
+                </div>
+                <p>
+                <% flat.description %>
+                </p>
+                <p>
+                <span class="label label-grey-200" ng-show="flat.no_bedrooms">
+                <i class="fa fa-fw fa-columns"></i> <% flat.no_bedrooms %> सुत्नेकोठा
+                </span>
+                <span class="label label-grey-200">
+                <i class="fa fa-fw fa-cutlery"></i><% flat.no_kitchen %> भान्साकोठा
+                </span>
+                <span class="label label-grey-200" ng-show="flat.no_hall!=0">
+                <i class="fa fa-fw fa-coffee"></i> <% flat.no_hall %> बैठककोठा
+                </span>
+                </p>
+            </div>
+            <br>
+            <div class="page-section">
+                <br>
+                <div>
+                    <h4>सुबिधाहरु</h4>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4">
+                        <ul class="list-group relative paper-shadow" data-hover-z="0.5" data-animated>
+                            <li class="list-group-item" ng-repeat="facility in facilities1">
+                                <div class="media v-middle">
+                                    <div class="media-left">
+                                        <div class="icon-block s30 bg-red-300 text-white img-circle">
+
+                                            <i  ng-class="facility.icon ? facility.icon :'fa fa-star'" ></i>
+
+                                        </div>
+                                    </div>
+                                    <div class="media-body text-body-2">
+                                        <% facility.title %> 
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <ul class="list-group relative paper-shadow" data-hover-z="0.5" data-animated>
+                            <li class="list-group-item" ng-repeat="facility in facilities2">
+                                <div class="media v-middle">
+                                    <div class="media-left">
+                                        <div class="icon-block s30 bg-red-300 text-white img-circle">
+                                             <i  ng-class="facility.icon ? facility.icon :'fa fa-star'" ></i>
+                                        </div>
+                                    </div>
+                                    <div class="media-body text-body-2">
+                                        <% facility.title %> 
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <ul class="list-group relative paper-shadow" data-hover-z="0.5" data-animated>
+                            <li class="list-group-item" ng-repeat="facility in facilities3">
+                                <div class="media v-middle">
+                                    <div class="media-left">
+                                        <div class="icon-block s30 bg-red-300 text-white img-circle">
+                                             <i  ng-class="facility.icon ? facility.icon :'fa fa-star'" ></i>
+                                        </div>
+                                    </div>
+                                    <div class="media-body text-body-2">
+                                        <% facility.title %> 
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4">
+            <div class="page-section">
+                <!-- .panel -->
+                <div class="panel panel-default paper-shadow" data-z="0.5" data-hover-z="1" data-animated>
+                    <div class="panel-heading">
+                        <h4 class="text-headline"><% flat.created_by.user_is %></h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="media v-middle">
+                            <div class="media-left">
+                                <img src="<% flat.created_by.profile_pic %>" alt="About Adrian" width="60" class="img-circle" />
+                            </div>
+                            <div class="media-body">
+                                <h4 class="text-title margin-none"><a href="#"><% flat.created_by.username %></a></h4>
+                                <span class="caption text-light"><% flat.created_by.email%></span>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="margin-none" />
+                    <div class="panel-body text-center">
+                        <p><a class="btn btn-success  paper-shadow relative" data-z="1" data-hover-z="2"  ng-click="sendMessage(flat.created_by)">संदेश पठाउनुहोस</a></p>
+                    </div>
+                </div>
+                <!-- // END .panel -->
+            </div>
+            <!-- // END .page-section -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+
+
+<!-- begin row -->
+<div class="row">
+    <!-- begin col-12 -->
+    <div class="col-md-12">
+        <div class="result-container">
+            <div class="input-group m-b-20">
+                <input type="text" class="form-control input-white" ng-model="criteria" placeholder="Enter keywords here..." />
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-inverse"><i class="fa fa-search"></i> Search</button>
+                    <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-cog"></i>
+                    </button>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a href="javascript:;">Action</a></li>
+                        <li><a href="javascript:;">Another action</a></li>
+                        <li><a href="javascript:;">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:;">Separated link</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="dropdown pull-left">
+                <a href="javascript:;" class="btn btn-white btn-white-without-border dropdown-toggle" data-toggle="dropdown">
+                    Filters by <span class="caret m-l-5"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="javascript:;">Posted Date</a></li>
+                    <li><a href="javascript:;">View Count</a></li>
+                    <li><a href="javascript:;">Total View</a></li>
+                    <li class="divider"></li>
+                    <li><a href="javascript:;">Location</a></li>
+                </ul>
+            </div>
+            <div class="btn-group m-l-10 m-b-20">
+            <a ui-sref='mypost-flat-new'>
+                <button type="button" class="btn btn-primary active"><i class="fa fa-plus-square"></i> Add</button>
+            </a>
+            </div>
+
+             <alert ng-repeat="alert in alerts" type="<% alert.type %>" close="closeAlert($index)" dismiss-on-timeout='2500'><%alert.msg%></alert>
+
+            <ul class="result-list">
+                <li ng-repeat="flat in filteredRlats =(flats|filter:criteria |paginate:currentPage:pageSize )">
+                    <div class="result-image">
+                        <a href="javascript:;"><img src="assets/img/gallery/gallery-1.jpg" alt="" /></a>
+                    </div>
+                    <div class="result-info">
+                        <h4 class="title"><a href="javascript:;"><% flat.title %></a>
+                            <span style="">
+                                <small><span class="glyphicon glyphicon-time"></span>  <span am-time-ago="flat.created_at"></span></small>
+                            </span>
+                        </h4>
+
+                        <%flat.no_rooms%> Rooms Flat
+                        <p class="location">
+                            <%flat.vdc%>,
+                            <%flat.locality %>
+                        </p>
+                        <p class="desc">
+                            Rs.
+                            <%flat.price%> Per Month
+                        </p>
+                        <div class="btn-row">
+
+                            <a ui-sref="mypost-flat-edit({flatId: <% flat.id %>})">
+                            <button type="button" class="btn btn-xs btn-primary m-r-5 m-b-5"><i class="fa fa-edit (alias)"></i> Edit</button>
+                            </a>
+                            <button type="button" class="btn btn-xs btn-danger m-r-5 m-b-5" ng-click="delete(flat,$index,$event)"><i class="fa fa-times"></i> Remove</button>
+
+                                <button type="button" class="btn btn-xs btn-info m-r-5 m-b-5"><i class="fa fa-external-link"></i> Details</button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="result-price">
+                        <small><% flat.created_by.username %></small>
+                        <small><i class="fa fa-phone-square" ng-show="<% flat.created_by.mob_no %>" >&nbsp; &nbsp;<% flat.created_by.mob_no %></i></small>
+                        <small><span class="badge badge-success ion-ios-telephone"><%flat.created_by.user_is %></span></small>
+
+                    </div>
+                </li>
+            </ul>
+            <pagination-dir num-pages="numPages" current-page="currentPage" total-records="totalRecords"></pagination-dir>
+        </div>
+        <!-- end col-12 -->
+    </div>
+    <!-- end row -->

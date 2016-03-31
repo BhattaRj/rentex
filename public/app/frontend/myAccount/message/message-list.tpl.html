@@ -1,0 +1,26 @@
+<div class="form-group">
+    <div class="input-group">
+        <div class="input-group-btn">
+            <a class="btn btn-primary" href="javascript:;" ng-click="sendMessage(myMessage)">
+            <i class="fa fa-envelope"></i> Send
+            </a>
+        </div>
+        <!-- /btn-group -->
+        <input type="text" class="form-control share-text" placeholder="Write message..." ng-model="myMessage"/>
+    </div>
+    <!-- /input-group -->
+</div>
+<div class="panel panel-default paper-shadow" data-z="0.5" data-hover-z="1" data-animated ng-repeat="message in messageList">
+    <div class="panel-body">
+        <div class="media v-middle">
+            <div class="media-left">
+                <img src="<% message.sender.profile_pic %>" alt="person" class="media-object img-circle width-50" />
+            </div>
+            <div class="media-body message">
+                <h4 class="text-subhead margin-none"><a href="#"><% message.sender.username %></a></h4>
+                <p class="text-caption text-light"><i class="fa fa-mobile-phone"> <% message.phone %></i> <i class="fa fa-clock-o"></i> <span am-time-ago="message.created_at"></p>
+            </div>
+        </div>
+        <p><% message.message %></p>
+    </div>
+</div>  

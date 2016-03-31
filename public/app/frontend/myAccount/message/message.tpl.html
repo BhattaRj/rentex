@@ -1,0 +1,28 @@
+<div class="media messages-container media-clearfix-xs-min media-grid">
+    <div class="media-left">
+        <div class="messages-list">
+            <div class="panel panel-default paper-shadow" data-z="0.5" data-scrollable-h>
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="message in messages">
+                        <a ui-sref="myAccount.message.list({userId:message.sender.id})">
+                        <div class="media v-middle">
+                            <div class="media-left">
+                                <img src="<% message.sender.profile_pic %>" width="50" alt="" class="media-object" />
+                            </div>
+                            <div class="media-body">
+                                <span class="date"> <span am-time-ago="message.created_at"></span></small></span>
+                                <span class="user"><% message.sender.username %></span>
+                                <div class="text-light"><% message.message | subString : 0 : 23 %>....</div>
+                            </div>
+                        </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="media-body" ui-view>
+    </div>
+</div>
+<br/>
+<br/>

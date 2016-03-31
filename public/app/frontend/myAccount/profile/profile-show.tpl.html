@@ -1,0 +1,105 @@
+<div class="tabbable paper-shadow relative" data-z="0.5">
+    <!-- Tabs -->
+    <ul class="nav nav-tabs">
+        <li class="active" ui-sref-active="active"><a href="javascript:;"><i class="fa fa-fw fa-credit-card"></i> <span class="hidden-sm hidden-xs">Profile</span></a></li>
+    </ul>
+    <!-- // END Tabs -->
+    <!-- Panes -->
+    <div class="tab-content">
+        <div id="billing" class="tab-pane active">
+            <form action="#" class="form-horizontal">
+                <div class="form-group">
+                    <label for="name" class="col-md-2 control-label">First Name</label>
+                    <div class="col-md-6">
+                        <div class="form-control-material">
+                            <input type="text" class="form-control used" id="first_name" ng-model="userData.first_name">
+                            <label for="first_name">First Name</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-md-2 control-label">Last Name</label>
+                    <div class="col-md-6">
+                        <div class="form-control-material">
+                            <input type="text" class="form-control used" id="last_name" ng-model="userData.last_name">
+                            <label for="last_name">Last Name</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-md-2 control-label">Mobile No.</label>
+                    <div class="col-md-6">
+                        <div class="form-control-material">
+                            <input type="text" class="form-control used" id="name" ng-model="userData.mob_no">
+                            <label for="name">Mobile No.</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="country" class="col-md-2 control-label">User Type</label>
+                    <div class="radio radio-info radio-inline">
+                        <input type="radio" id="inlineRadio1" name="radioInline" checked="" ng-model="userData.user_is" value="user">
+                        <label for="inlineRadio1">User</label>
+                    </div>
+                    <div class="radio radio-inline">
+                        <input type="radio" id="inlineRadio2" value="agent" name="radioInline">
+                        <label for="inlineRadio2">Agent</label>
+                    </div>
+                    <div class="radio radio-inline">
+                        <input type="radio" id="inlineRadio3" value="woner" name="radioInline">
+                        <label for="inlineRadio3">Woner</label>
+                    </div>
+                </div>
+                <div class="form-group margin-bottom-none">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="button" class="btn btn-success paper-shadow relative" data-z="0.5" data-hover-z="1" data-animated ng-click="save()">Update Profile</button>
+                    </div>
+                </div>
+            </form>
+            <hr/>
+            <div class="media v-middle s-container">
+                <div class="media-body">
+                    <h5 class="text-subhead">Change Password</h5>
+                </div>
+            </div>
+            <form action="#" class="form-horizontal">
+                <div class="form-group">
+                    <label for="name" class="col-md-2 control-label">Old Password</label>
+                    <div class="col-md-6">
+                        <div class="form-control-material">
+                            <input type="password" class="form-control used" id="first_name" value="">
+                            <label for="first_name">Old Password</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-md-2 control-label">New Password</label>
+                    <div class="col-md-6">
+                        <div class="form-control-material">
+                            <input type="password" class="form-control used" id="last_name" value="">
+                            <label for="last_name">New Password</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-md-2 control-label">Confirm Password</label>
+                    <div class="col-md-6">
+                        <div class="form-control-material">
+                            <input type="password" class="form-control used" id="last_name" value="">
+                            <label for="last_name">Confirm Password</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group margin-bottom-none">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" class="btn btn-success paper-shadow relative" data-z="0.5" data-hover-z="1" data-animated>Change Password</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- // END Panes -->
+</div>
+<br/>
+<br/>

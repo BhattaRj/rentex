@@ -1,0 +1,57 @@
+<div class="panel panel-default paper-shadow" data-z="0.5" ng-repeat="flat in flats">
+    <div class="panel-body">
+        <div class="media media-clearfix-xs">
+            <div class="media-left text-center">
+                <div class="cover width-150 width-100pc-xs overlay cover-image-full hover margin-v-0-10">
+                    <span class="img icon-block height-130 bg-lightred"></span>
+                    <span class="overlay overlay-full padding-none icon-block bg-lightred">
+                    <span class="v-center">
+                    <i class="fa fa-home"></i>
+                    </span>
+                    </span>
+                    <a ui-sref="website-courses.single" class="overlay overlay-full overlay-hover overlay-bg-white">
+                    <span class="v-center">
+                    <span class="btn btn-circle btn-red-500 btn-lg"><i class="fa fa-home"></i></span>
+                    </span>
+                    </a>
+                </div>
+            </div>
+            <div class="media-body">
+                <p>
+                <a ui-sref="showFlat({flatId:flat.id})"><span class="flat-title"> <% flat.title  %></span></a>
+                <small><span class="glyphicon glyphicon-time"></span> <span am-time-ago="flat.created_at"></span></small>
+                </p>
+                <p>
+                <span class="label label-grey-200" ng-show="flat.no_bedrooms">
+                <i class="fa fa-fw fa-columns"></i> <% flat.no_bedrooms %> सुत्नेकोठा
+                </span>
+                <span class="label label-grey-200">
+                <i class="fa fa-fw fa-cutlery"></i><% flat.no_kitchen %> भान्साकोठा
+                </span>
+                <span class="label label-grey-200" ng-show="flat.no_hall!=0">
+                <i class="fa fa-fw fa-coffee"></i> <% flat.no_hall %> बैठककोठा </span>
+                </p>
+                <p class="location">
+                <% dataFactory.district[flat.district].name %>
+                <span ng-hide="flat.vdc == dataFactory.district[flat.district].name "><% flat.vdc %>,</span>
+                <span ng-show="flat.locality"> <% flat.locality %></span>
+                </p>
+                <p>
+                <span class="price"> <% flat.price | currency : "रु. " : 0 %> </span> PER MONTH
+                </p>
+                <div class="btn-row">
+                    <rating class="yellow rating-star" ng-model="flat.rating " max="5" readonly="true" state-off="glyphicon-star" state-on="glyphicon-star"></rating>
+                    <a href="javascript:;" ng-click="report(flat.id)" class="right" tooltip-placement="top" tooltip="Report">
+                    <i class="fa fa-fw" ng-class="flat.reports.length!=0 ? 'fa-flag red':'fa-flag-o'"></i>
+                    </a>
+                    <a href="javascript:;" ng-click="shortlist(flat.id)" class="right" tooltip-placement="top" tooltip="Shortlist">
+                    <i class="fa fa-fw" ng-class="flat.shortlists.length!=0 ? 'fa-heart red':'fa-heart-o'"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page='itemsPerPage' ng-change="pageChanged()">
+</pagination>
+<pre>Page: <% currentPage %> / <% numPages %></pre>

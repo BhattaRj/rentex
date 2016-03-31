@@ -1,0 +1,28 @@
+<!-- begin #content -->
+<!-- begin vertical-box -->
+<div class="vertical-box">
+    <!-- begin vertical-box-column -->
+    <div class="vertical-box-column width-250">
+        <!-- begin wrapper -->
+        <div class="wrapper bg-silver text-center">
+            <h4>Folders</h4>
+            <!-- <a href="javascript:;" class="btn btn-success p-l-40 p-r-40 btn-sm">FOLDERS</a> -->
+        </div>
+        <!-- end wrapper -->
+        <!-- begin wrapper -->
+        <div class="wrapper">
+            <!-- <p><b>FOLDERS</b></p> -->
+            <ul class="nav nav-pills nav-stacked nav-sm">
+                <li class="active"><a ui-sref="message.list()"><i class="fa fa-inbox fa-fw m-r-5"></i> Inbox <span class="badge pull-right"><% messages.length %></span></a></li>
+                <li><a ui-sref="message.list()"><i class="fa fa-flag fa-fw m-r-5"></i> Important</a></li>
+            </ul>
+        </div>
+        <!-- end wrapper -->
+    </div>
+    <!-- end vertical-box-column -->
+    <!-- begin vertical-box-column -->
+    <div class="vertical-box-column" ui-view>
+    </div>
+    <!-- end vertical-box-column -->
+</div>
+<!-- end vertical-box -->

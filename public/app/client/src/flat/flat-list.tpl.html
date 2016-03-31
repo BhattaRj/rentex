@@ -1,0 +1,127 @@
+<!-- begin row -->
+<div class="row">
+    <!-- begin col-12 -->
+    <div class="col-md-9">
+        <div class="result-container">
+            <!--             <div class="input-group m-b-20">
+                <input type="text" class="form-control input-white" ng-model="criteria" placeholder="Enter keywords here..." />
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-inverse"><i class="fa fa-search"></i> Search</button>
+                    <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-cog"></i>
+                    </button>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a href="javascript:;">ASC</a></li>
+                        <li><a href="javascript:;">DESC</a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:;">Advance Filters</a></li>
+                    </ul>
+                </div>
+            </div> -->
+            <accordion close-others="oneAtATime">
+                <accordion-group>
+                    <accordion-heading>
+                        <span>Total
+                         <% flats.length %> items found.</span>
+                        <i class="pull-right glyphicon right filter-icon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                        <span class="pull-right filter-result"> Filter  </span>
+                    </accordion-heading>
+                    <form class="form-inline">
+                        <div class="form-group m-r-10">
+                            <input type="number" class="form-control" placeholder="Min Price" ng-model="filter.min_price" ng-blur="getFlats(filter)" />
+                        </div>
+                        <div class="form-group m-r-10">
+                            <input type="number" class="form-control" placeholder="Max Price" ng-model="filter.max_price" ng-blur="getFlats(filter)" />
+                        </div>
+                        <div class="form-group m-r-10">
+                            <input type="text" ng-model="filter.district" typeahead="district as district.name for district in dataFactory.district | filter:{name:$viewValue} |limitTo:8" ng-blur="getFlats(filter)" class="form-control" placeholder="District">
+                        </div>
+                        <div class="form-group m-r-10">
+                            <input type="text" ng-model="filter.vdc" typeahead="address for address in getVdc($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control" placeholder="City / VDC " ng-blur="getFlats(filter)">
+                            <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                            <div ng-show="noResults">
+                                <i class="glyphicon glyphicon-remove"></i> No Results Found
+                            </div>
+                            <!--                             <input type="text" class="form-control" placeholder="Town/Vdc" ng-blur="getFlats(filter)" /> -->
+                        </div>
+                        <div class="form-group m-r-10">
+                            <input type="text" ng-model="filter.locality" typeahead="address for address in getLocality($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control" placeholder="Locality" ng-blur="getFlats(filter)">
+                            <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                            <div ng-show="noResults">
+                                <i class="glyphicon glyphicon-remove"></i> No Results Found
+                            </div>
+                        </div>
+                        <div class="form-group m-r-10">
+                            <input type="number" class="form-control" placeholder="Bedrooms" ng-model="filter.no_bedrooms" ng-blur="getFlats(filter)" />
+                        </div>
+                        <div class="form-group m-r-10">
+                            <input type="number" class="form-control" placeholder="Kitchen" ng-model="filter.no_kitchen" ng-blur="getFlats(filter)" />
+                        </div>
+                        <button type="button" class="btn btn-sm btn-primary m-r-5" ng-click="resetFlters(filter)">Reset</button>
+                        <!-- <button type="submit" class="btn btn-sm btn-default">Register</button> -->
+                    </form>
+                </accordion-group>
+            </accordion>
+            <alert ng-repeat="alert in alerts" type="<% alert.type %>" close="closeAlert($index)" dismiss-on-timeout='2500'>
+                <%alert.msg%>
+            </alert>
+            <div class="spinner" ng-show="loading"></div>
+            <ul class="result-list">
+                <li ng-repeat="flat in flats">
+                    <!-- <pre> <% flat | json  %> </pre> -->
+                    <div class="result-image">
+                        <a href="javascript:;"><img src="assets/img/gallery/house.jpg" alt="" /></a>
+                    </div>
+                    <div class="result-info">
+
+                        <a href="javascript:;"><span class="flat-title"> <% flat.title %> </span></a>
+                            <span style="">
+                                <small><span class="glyphicon glyphicon-time"></span>  <span am-time-ago="flat.created_at"></span></small>
+                            </span>
+
+
+                        <h5>
+                            <span class="label label-default" ng-show="flat.no_bedrooms"> <i class="fa fa-bank (alias)"></i> <% flat.no_bedrooms %> Bedrooms</span>
+                            <span class="label label-default"> <i class="fa fa-bank (alias)"></i> <% flat.no_kitchen %> Kitchen</span>
+                            <span class="label label-default" ng-show="flat.no_hall!=0"> <i class="fa fa-bank (alias)"></i> <%flat.no_hall%> Hall</span>
+                        </h5>
+                        <p class="location">
+                            <% dataFactory.district[flat.district].name %>,
+                                <span ng-hide="flat.vdc == dataFactory.district[flat.district].name "><% flat.vdc %>,</span>
+                                <span ng-show="flat.locality"> <% flat.locality %> </span>
+                        </p>
+                        <p>
+                            <span class="price"> <% flat.price | currency : "Rs. " : 0 %> </span> PER MONTH
+                        </p>
+
+
+                        <div class="btn-row">
+                            <pre ng-hide="true"><% flat.rating = ( flat.shortlists.length / 10 ) +1 %></pre>
+                            <rating class="yellow rating-star" ng-model="flat.rating " max="5" readonly="true" state-off="glyphicon-star" state-on="glyphicon-star"></rating>
+                            <a href="javascript:;" ng-click="report(flat.id)" class="right" tooltip-placement="top" tooltip="Report">
+                                <i class="fa fa-fw" ng-class="flat.reports.length!=0 ? 'fa-flag red':'fa-flag-o'"></i>
+                            </a>
+                            <a href="javascript:;" ng-click="shortlist(flat.id)" class="right" tooltip-placement="top" tooltip="Shortlist">
+                                <i class="fa fa-fw" ng-class="flat.shortlists.length!=0 ? 'fa-heart red':'fa-heart-o'"></i>
+                            </a>
+                        </div>
+
+
+                    </div>
+                    <div class="result-price">
+                        <small><% flat.created_by.username %></small>
+                        <small><i class="fa fa-phone-square" ng-show="<% flat.created_by.mob_no %>" >&nbsp; &nbsp;<% flat.created_by.mob_no %></i></small>
+                        <small><span class="badge badge-success ion-ios-telephone"><%flat.created_by.user_is %></span></small>
+                        <a href="javascript:;" class="btn btn-inverse btn-block" ng-click="sendMessage(flat.created_by)">Contact</a>
+                    </div>
+                </li>
+            </ul>
+            <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page='itemsPerPage' ng-change="pageChanged()"></pagination>
+            <pre>Page: <% currentPage %> / <% numPages %></pre>
+        </div>
+    </div>
+    <!-- end col-12 -->
+    <div class="col-md-3">
+    </div>
+</div>
+<!-- end row -->

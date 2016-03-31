@@ -1,0 +1,134 @@
+<div class="profile-container">
+    <!-- begin profile-section -->
+    <div class="profile-section">
+        <!-- begin profile-info -->
+        <div class="profile-info">
+            <!-- begin table -->
+            <div class="table-responsive">
+                <alert ng-repeat="alert in alerts" type="<% alert.type %>" close="closeAlert($index)" dismiss-on-timeout='2500'><% alert.msg %></alert>
+
+
+                <table class="table table-profile">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>
+                                <h4><% userData.username %><small><% userData.email %></small></h4>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        <tr class="highlight">
+                            <td class="field">I am </td>
+                            <td>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="userData.user_is" value="user" ng-click="save()" /> User
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="userData.user_is" value="owner" ng-click="save()" /> Owner
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="userData.user_is" value="agent" ng-click="save()" /> Agent
+                                </label>
+                            </td>
+                        </tr>
+                        <tr class="divider">
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td class="field">Mobile</td>
+                            <td ng-if="updateValue!='mob_no'">
+                                <a href="javascript:;" ng-hide="userData.mob_no" ng-click="update('mob_no')">Add Mobile No.</a>
+                                <span ng-hide="!userData.mob_no" ng-click="update('mob_no')">
+
+                                     <i class="fa fa-mobile fa-lg m-r-5"></i> <% userData.mob_no %>
+                                     <a href="javascript:;" class="m-l-5" ng-click="update('mob_no')">Edit</a>
+
+                                </span>
+                            </td>
+                            <td ng-if="updateValue=='mob_no'">
+                                <input type="text" ng-model="userData.mob_no" class="form-control input-inline input-xs">
+                                <a href="javascript:;" class="m-l-5" ng-click="save()">Save</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="field">Office</td>
+                            <td ng-if="updateValue!='office_no'">
+                                <a href="javascript:;" ng-hide="userData.office_no" ng-click="update('office_no')">Add Office No.</a>
+                                <span ng-hide="!userData.office_no" ng-click="update('office_no')">
+
+                                     <i class="fa fa-mobile fa-lg m-r-5"></i> <% userData.office_no %>
+                                     <a href="javascript:;" class="m-l-5" ng-click="update('office_no')">Edit</a>
+
+                                </span>
+                            </td>
+                            <td ng-if="updateValue=='office_no'">
+                                <input type="text" ng-model="userData.office_no" class="form-control input-inline input-xs">
+                                <a href="javascript:;" class="m-l-5" ng-click="save()">Save</a>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+                <form class="form-horizontal" name="profileForm" novalidate>
+
+                <table class="table table-profile">
+                <tbody>
+                        <tr class="divider">
+                            <td colspan="2"></td>
+                        </tr>
+
+                        <tr class="highlight">
+                            <td class="field"></td>
+                            <td> <h5> Change Password </h5></td>
+                        </tr>
+                        <tr class="divider">
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td class="field">Password</td>
+                            <td>
+                                <div ng-class="{ 'has-error': profileForm.password.$touched && profileForm.password.$invalid }">
+                                    <input type="password" ng-model="passwordData.password" class="form-control input-inline input-xs" name="password" required minlength="8" maxlength="15">
+
+                                    <ul ng-messages="profileForm.password.$error" ng-show="profileForm.password.$touched">
+                                        <div ng-messages-include="/app/common/template/messages.html"></div>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="field">Confirm Password</td>
+                            <td>
+                            <div ng-class="{ 'has-error': profileForm.confirmPassword.$touched && profileForm.confirmPassword.$invalid }">
+                                <input type="password" ng-model="passwordData.confirmPassword" class="form-control input-inline input-xs" name="confirmPassword" required minlength="8" maxlength="15">
+
+                                <ul ng-messages="profileForm.confirmPassword.$error" ng-show="profileForm.confirmPassword.$touched">
+                                    <div ng-messages-include="/app/common/template/messages.html"></div>
+                                </ul>
+                            </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button type="button" ng-click="resetPassword()" class="btn btn-sm btn-success" ng-disabled="!canSave(profileForm)">Save</button required>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                </form>
+            </div>
+            <!-- end table -->
+        </div>
+        <!-- end profile-info -->
+    </div>
+    <!-- end profile-section -->
+</div>

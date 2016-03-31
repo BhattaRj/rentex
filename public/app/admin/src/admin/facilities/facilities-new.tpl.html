@@ -1,0 +1,50 @@
+<!-- begin row -->
+<div class="row">
+    <!-- begin col-6 -->
+    <div class="col-md-12">
+        <!-- begin panel -->
+        <div class="panel panel-inverse" data-sortable-id="form-validation-2">
+            <div class="panel-heading">
+                <h4 class="panel-title">Create Facility</h4>
+            </div>
+            <div class="panel-body panel-form">
+                <form class="form-horizontal form-bordered" name="facilityForm" novalidate>
+					<div class="form-group">
+						<label class="control-label col-md-4 col-sm-4">Title* :</label>
+						<div class="col-md-6 col-sm-6">
+							<input class="form-control" ng-class="getCssClasses(facilityForm.title)"  type="text" id="title" name="title" ng-model="facility.title" placeholder="Title" required/>
+							<span ng-show="showError(facilityForm.title,'required')">This title is required</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-4 col-sm-4">Icon * :</label>
+						<div class="col-md-6 col-sm-6">
+							<input class="form-control" ng-class="getCssClasses(facilityForm.icon)"  type="text"  name="icon" ng-model="facility.icon" placeholder="Icon" required/>
+							<span ng-show="showError(facilityForm.icon,'required')">This icon is required</span>
+						</div>
+					</div>					
+					<div class="form-group">
+						<label class="control-label col-md-4 col-sm-4">Description :</label>
+						<div class="col-md-6 col-sm-6">
+							<input class="form-control" type="text" id="description" name="description" ng-model="facility.description" placeholder="Description"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-4 col-sm-4"></label>
+						<div class="col-md-6 col-sm-6">
+							<button ng-disabled="!canSave(facilityForm)" class="btn btn-primary" ng-click="save(facility)">Save</button>
+							<button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+						</div>
+					</div>
+                </form>
+            </div>
+        </div>
+        <!-- end panel -->
+
+        <div>
+
+        </div>
+    </div>
+    <!-- end col-6 -->
+</div>
+<!-- end row -->

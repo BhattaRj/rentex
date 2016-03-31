@@ -1,0 +1,55 @@
+<div class="parallax overflow-hidden bg-blue-400 page-section third">
+    <div class="container parallax-layer" data-opacity="true">
+        <div class="media v-middle">
+            <div class="media-left text-center">
+                <a href="#">
+                    <img src="<% user.profile_pic %>" alt="people" class="img-circle width-80" />
+                </a>
+            </div>
+            <div class="media-body">
+                <h1 class="text-white text-display-1 margin-v-0"><% user.username %></h1>
+                <p class="text-subhead">
+                    <% user.email %>
+                </p>
+            </div>
+            <div class="media-right">
+                <span class="label bg-blue-500"><% user.user_is %></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="page-section">
+        <div class="row">
+            <div class="col-md-9" ui-view>
+
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default" data-toggle="panel-collapse" data-open="true">
+                    <div class="panel-heading panel-collapse-trigger">
+                        <h4 class="panel-title">My Account</h4>
+                    </div>
+                    <div class="panel-body list-group">
+                        <ul class="list-group list-group-menu">
+                            <li class="list-group-item" ui-sref-active="active"><a class="link-text-color" ui-sref="myAccount.profile">Profile</a></li>
+                            <li class="list-group-item" ui-sref-active="active"><a class="link-text-color" ui-sref="myAccount.dashboard">Dashboard</a></li>
+                            <li class="list-group-item" ui-sref-active="active"><a class="link-text-color" ui-sref="myAccount.shortlist">Shortlist</a></li>
+                            <li class="list-group-item" ui-sref-active="active"><a class="link-text-color" ui-sref="myAccount.message">Messages</a></li>
+                            <li class="list-group-item"><a class="link-text-color" href="auth/logout"><span>Logout</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel panel-default" data-toggle="panel-collapse" data-open="true">
+                    <div class="panel-heading panel-collapse-trigger">
+                        <h4 class="panel-title">My Post</h4>
+                    </div>
+                    <div class="panel-body list-group">
+                        <ul class="list-group list-group-menu">
+                            <li class="list-group-item" ui-sref-active="active"><a class="link-text-color" ui-sref="myAccount.mypost-flats">कोठा तथा फलाट</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
